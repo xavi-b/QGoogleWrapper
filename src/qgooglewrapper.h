@@ -32,6 +32,9 @@ public:
     void poll();
     QNetworkReply* apiCall(QNetworkRequest const& request);
 
+    QString getRefreshToken() const { return this->refreshToken; }
+    void setRefreshToken(QString const& refreshToken) { this->refreshToken = refreshToken; }
+
 signals:
     void pendingVerification(QString const& verificationUrl, QString const& userCode);
     void pollingTimedOut();
@@ -39,7 +42,6 @@ signals:
     void deviceCodeRequestError(QString const& error);
     void pollingRequestError(QString const& error);
     void accessTokenRequestError(QString const& error);
-    void refreshTokenRequestError(QString const& error);
     void log(QString const& log);
 
 };

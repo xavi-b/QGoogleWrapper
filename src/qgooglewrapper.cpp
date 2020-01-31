@@ -132,7 +132,7 @@ void QGoogleWrapper::startPolling(qint64 expiresIn, qint64 interval)
     connect(this->poller, &QTimer::timeout, this, [=]()
     {
         static qint64 totalTime = 0;
-        ++totalTime;
+        totalTime += interval;
         if(totalTime > expiresIn)
         {
             this->poller->stop();
