@@ -42,14 +42,14 @@ connect(wrapper, &QGoogleWrapper::authenticated, [&]()
     QNetworkRequest request;
     request.setUrl(QUrl("https://www.google.com/m8/feeds/contacts/default/full?max-results=1000"));
     request.setRawHeader("GData-Version", "3.0");
-    auto reply = this->wrapper->apiCall(request);
-    connect(reply, &QNetworkReply::finished, this, [=]()
+    auto reply = wrapper->apiCall(request);
+    connect(reply, &QNetworkReply::finished, [&]()
     {
         QByteArray bytes = reply->readAll();
         qDebug() << bytes;
         reply->deleteLater();
     });
-    connect(reply, QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error), this, [=](QNetworkReply::NetworkError error)
+    connect(reply, QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error), [&](QNetworkReply::NetworkError error)
     {
         qDebug() << reply->errorString();
         // error handling
