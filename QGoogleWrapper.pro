@@ -1,9 +1,6 @@
-TEMPLATE        = lib
-CONFIG         += c++17
-DEFINES        += QT_DEPRECATED_WARNINGS
-QT             += network
+TEMPLATE = subdirs
 
 SUBDIRS += \
-    src/
+    lib
 
-include(src/src.pri)
+CONFIG += ordered
