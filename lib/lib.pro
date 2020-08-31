@@ -5,6 +5,11 @@ QT             += core network
 TARGET          = QGoogleWrapper
 DESTDIR         = $$PWD
 
+unix {
+target.path = /usr/lib
+INSTALLS += target
+}
+
 SUBDIRS += \
     $$PWD/../include \
     $$PWD/../src
